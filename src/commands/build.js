@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { buildTree } from '../parser/buildTree.js'
 import { generate } from '../parser/generate.js'
-import { TemplateNotFoundError } from '../errors/ArborError.js'
+import { TemplateNotFoundError } from '../errors/TwigError.js'
 
 const TEMPLATES = ['angular', 'nodejs', 'nest', 'vue']
 
@@ -34,21 +34,18 @@ async function chooseTemplate(template) {
   switch (template.toLowerCase()) {
     case 'angular':
       return await readFile(
-        join(__dirname, '../templates/angular.arbor'),
+        join(__dirname, '../templates/angular.twig'),
         'utf8',
       )
     case 'nodejs':
-      return await readFile(
-        join(__dirname, '../templates/nodejs.arbor'),
-        'utf8',
-      )
+      return await readFile(join(__dirname, '../templates/nodejs.twig'), 'utf8')
     case 'nest':
-      return await readFile(join(__dirname, '../templates/nest.arbor'), 'utf8')
+      return await readFile(join(__dirname, '../templates/nest.twig'), 'utf8')
     case 'vue':
-      return await readFile(join(__dirname, '../templates/vue.arbor'), 'utf8')
+      return await readFile(join(__dirname, '../templates/vue.twig'), 'utf8')
     default:
       return await readFile(
-        join(__dirname, '../templates/default.arbor'),
+        join(__dirname, '../templates/default.twig'),
         'utf8',
       )
   }

@@ -1,4 +1,4 @@
-import { ParserTemplateError } from '../errors/ArborError.js'
+import { ParserTemplateError } from '../errors/TwigError.js'
 
 export function buildTree(tokens, options) {
   const tree = []

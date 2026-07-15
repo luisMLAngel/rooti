@@ -1,8 +1,8 @@
 import { cac } from 'cac'
 import { build } from '../src/commands/index.js'
-import { ArborError } from '../src/errors/ArborError.js'
+import { TwigError } from '../src/errors/TwigError.js'
 
-const cli = cac('arbor')
+const cli = cac('twig')
 
 cli
   .command(
@@ -19,7 +19,7 @@ cli
     try {
       await build(template, options)
     } catch (e) {
-      if (e instanceof ArborError) {
+      if (e instanceof TwigError) {
         console.error(`Error: ${e.message}`)
         if (options.verbose) {
           console.error(e.stack)

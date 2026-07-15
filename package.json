@@ -1,18 +1,40 @@
 {
-  "name": "arbor",
+  "name": "Twig",
   "version": "1.0.0",
   "description": "A CLI tool for generating project folder and file structures from a simple blueprint.",
-  "bin": "./bin/arbor.js",
+  "bin": "./bin/Twig.js",
   "scripts": {},
   "keywords": [
     "forge",
     "folder",
     "files",
-    "blueprint"
+    "blueprint",
+    "scaffold",
+    "scaffolding",
+    "generator",
+    "cli",
+    "project-structure",
+    "template",
+    "boilerplate",
+    "directory",
+    "structure",
+    "generate",
+    "init",
+    "devtools"
   ],
   "author": "Luis Angel Mendoza Lucio",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luisMLAngel/Twig.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luisMLAngel/Twig/issues"
+  },
   "dependencies": {
     "cac": "7.0.0"
   }
