@@ -5,6 +5,7 @@ import { dirname, join } from 'node:path'
 import { buildTree } from '../parser/buildTree.js'
 import { generate } from '../parser/generate.js'
 import { TemplateNotFoundError } from '../errors/RootiError.js'
+import { printTree } from '../parser/printTree.js'
 
 const TEMPLATES = ['angular', 'nodejs', 'nest', 'vue']
 
@@ -25,6 +26,7 @@ export async function build(template, options) {
     ? join(process.cwd(), options.output)
     : process.cwd()
   await generate(tree, outDirectory)
+  printTree('Structure generated correctly!')(tree)
 }
 
 async function chooseTemplate(template) {
@@ -38,7 +40,10 @@ async function chooseTemplate(template) {
         'utf8',
       )
     case 'nodejs':
-      return await readFile(join(__dirname, '../templates/nodejs.rooti'), 'utf8')
+      return await readFile(
+        join(__dirname, '../templates/nodejs.rooti'),
+        'utf8',
+      )
     case 'nest':
       return await readFile(join(__dirname, '../templates/nest.rooti'), 'utf8')
     case 'vue':

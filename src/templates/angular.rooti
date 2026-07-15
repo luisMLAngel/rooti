@@ -1,9 +1,19 @@
 core/
   guards/
+    auth.guard.ts
   interceptors/
+    auth.interceptor.ts
   services/
 features/
   home/
+  auth/
+    pages/
+      login/
+        login.page.ts
+        login.page.html
+    components/
+    form/
+      login.form.ts
 shared/
   components/
   directives/
