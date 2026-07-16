@@ -12,6 +12,12 @@ export class TemplateNotFoundError extends RootiError {
   }
 }
 
+export class TemplateNameIsRequiredError extends RootiError {
+  constructor(message) {
+    super(message, 'TEMPLATE_NOT_FOUND')
+  }
+}
+
 export class InvalidOptionsError extends RootiError {
   constructor(message) {
     super(message, 'INVALID_OPTIONS')
@@ -21,5 +27,17 @@ export class InvalidOptionsError extends RootiError {
 export class ParserTemplateError extends RootiError {
   constructor(message) {
     super(message, 'PARSER_TEMPLATE_ERROR')
+  }
+}
+
+export class TemplateNameAlreadyExistsError extends RootiError {
+  constructor(message) {
+    super(message, 'TEMPLATE_NAME_ALREADY_EXISTS_ERROR')
+  }
+}
+
+export class EmptyTemplateError extends RootiError {
+  constructor(message) {
+    super(message, 'EMPTY_TEMPLATE_ERROR')
   }
 }

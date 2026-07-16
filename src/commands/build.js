@@ -6,20 +6,21 @@ import { buildTree } from '../parser/buildTree.js'
 import { generate } from '../parser/generate.js'
 import { TemplateNotFoundError } from '../errors/RootiError.js'
 import { printTree } from '../parser/printTree.js'
-
-const TEMPLATES = ['angular', 'nodejs', 'nest', 'vue']
+import { INNER_TEMPLATES } from '../config/config.js'
+import { getTemplatePath } from '../template/utils.js'
 
 export async function build(template, options) {
-  const existsTemplate = TEMPLATES.some(
+  const existsInner = INNER_TEMPLATES.some(
     (t) => t.toLowerCase() === template.toLowerCase(),
   )
 
   let contentFile
-  if (existsTemplate) {
+  if (existsInner) {
     contentFile = await chooseTemplate(template)
   } else {
-    contentFile = await openFile(template)
+    contentFile = await openCustomOrFile(template)
   }
+
   const tokens = await parser(contentFile, options)
   const tree = buildTree(tokens, options)
   const outDirectory = options.output
@@ -27,6 +28,15 @@ export async function build(template, options) {
     : process.cwd()
   await generate(tree, outDirectory)
   printTree('Structure generated correctly!')(tree)
+}
+
+async function openCustomOrFile(template) {
+  const customPath = getTemplatePath(template)
+  try {
+    return await readFile(customPath, 'utf8')
+  } catch {
+    return await openFile(template)
+  }
 }
 
 async function chooseTemplate(template) {
